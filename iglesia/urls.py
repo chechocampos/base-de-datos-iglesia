@@ -8,5 +8,5 @@ urlpatterns = [
     path('feligreses/', include('feligreses.urls')),  # URLs de la app feligreses
     path('logout/', LogoutView.as_view(next_page='/accounts/login/'), name='logout'),  # Logout con redirección al login
     path('accounts/', include('django.contrib.auth.urls')),  # Login y autenticación de Django
-    path('', lambda request: redirect('accounts/login/')),  # Redirigir la raíz al login
+    path('', lambda request: redirect('feligreses/')),
 ]

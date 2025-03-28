@@ -97,5 +97,3 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
-# Redirigir usuarios no autenticados al login
-LOGIN_URL = '/accounts/login/'
