@@ -92,8 +92,3 @@ LOGOUT_REDIRECT_URL = '/accounts/login/'  # Redirige después de cerrar sesión
 
 # Configuración por defecto de claves primarias
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
-# Static files (CSS, JavaScript, Images)
-STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-
