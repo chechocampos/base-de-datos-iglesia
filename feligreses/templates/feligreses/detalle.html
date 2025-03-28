@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+
+{% block title %}Detalles de {{ feligres.nombre }}{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Detalles de {{ feligres.nombre }}</h2>
+    
+    <div class="table-responsive">
+        <table class="table table-bordered">
+            <tbody>
+                <tr>
+                    <th>Nombre</th>
+                    <td>{{ feligres.nombre }}</td>
+                </tr>
+                <tr>
+                    <th>Cédula</th>
+                    <td>{{ feligres.cedula }}</td>
+                </tr>
+                <tr>
+                    <th>Teléfono</th>
+                    <td>{{ feligres.telefono }}</td>
+                </tr>
+                <tr>
+                    <th>Dirección</th>
+                    <td>{{ feligres.direccion }}</td>
+                </tr>
+                <tr>
+                    <th>Ciudad</th>
+                    <td>{{ feligres.ciudad }}</td>
+                </tr>
+                <tr>
+                    <th>Fecha de Ingreso</th>
+                    <td>{{ feligres.fecha_ingreso }}</td>
+                </tr>
+                <tr>
+                    <th>Cargo</th>
+                    <td>{{ feligres.cargo }}</td>
+                </tr>
+                <tr>
+                    <th>Antecedentes</th>
+                    <td>{{ feligres.antecedentes }}</td>
+                </tr>
+                <tr>
+                    <th>Observaciones</th>
+                    <td>{{ feligres.observaciones }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="d-flex justify-content-start">
+        {% if es_admin %}
+        <a href="{% url 'editar_feligres' feligres.id %}" class="btn btn-warning me-2">Editar</a>
+            <!-- Botón de eliminar con confirmación -->
+            <form method="POST" action="{% url 'eliminar_feligres' feligres.id %}" class="d-inline">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-danger" 
+                        onclick="return confirm('¿Estás seguro de que deseas eliminar a {{ feligres.nombre }}? Esta acción no se puede deshacer.')">
+                    Eliminar
+                </button>
+            </form>
+        {% endif %}
+        <a href="{% url 'lista_feligreses' %}" class="btn btn-primary ms-2">Volver a la lista</a>
+    </div>
+</div>
+{% endblock %}
+

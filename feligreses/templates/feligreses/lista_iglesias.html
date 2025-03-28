@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+    <h2 class="text-center">Lista de Iglesias</h2>
+    <ul class="list-group">
+        {% for iglesia in iglesias %}
+            <li class="list-group-item">
+                <a href="{% url 'lista_feligreses' iglesia.id %}" class="text-decoration-none">
+                    {{ iglesia.nombre }} - {{ iglesia.direccion }} - {{ iglesia.ciudad }}
+                </a>
+            </li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}
