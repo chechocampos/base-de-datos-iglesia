@@ -1,12 +1,12 @@
+from django.shortcuts import redirect
 from django.contrib import admin
 from django.urls import path, include
 from django.contrib.auth.views import LogoutView
-from django.shortcuts import redirect
 
 urlpatterns = [
+    path('', lambda request: redirect('feligreses/', permanent=False)),
     path('admin/', admin.site.urls),  # Admin de Django
-    path('feligreses/', include('feligreses.urls')),  # URLs de la app feligreses
-    path('logout/', LogoutView.as_view(next_page='/accounts/login/'), name='logout'),  # Logout con redirección al login
-    path('accounts/', include('django.contrib.auth.urls')),  # Login y autenticación de Django
-    path('', lambda request: redirect('feligreses/')),  # Redirigir la raíz al módulo de feligreses
+    path('feligreses/', include('feligreses.urls')),  # URLs de feligreses
+    path('logout/', LogoutView.as_view(next_page='/accounts/login/'), name='logout'),  # Logout redirige a login
+    path('accounts/', include('django.contrib.auth.urls')),  # Agregar autenticación de Django
 ]
