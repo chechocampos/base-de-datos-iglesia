@@ -1,24 +1,29 @@
-<h2>Detalle del feligrés</h2>
-
-<p><strong>Nombre:</strong> {{ feligres.nombre }}</p>
-<p><strong>Cédula:</strong> {{ feligres.cedula }}</p>
-<p><strong>Fecha de nacimiento:</strong> {{ feligres.fecha_nacimiento }}</p>
-<p><strong>Edad:</strong> {{ feligres.edad }} años</p>
-<p><strong>Estado civil:</strong> {{ feligres.estado_civil }}</p>
-<p><strong>Dirección:</strong> {{ feligres.direccion }}</p>
-<p><strong>Teléfono:</strong> {{ feligres.telefono }}</p>
-<p><strong>Ciudad:</strong> {{ feligres.ciudad }}</p>
-<p><strong>Correo:</strong> {{ feligres.correo }}</p>
-<p><strong>Cónyuge:</strong> {{ feligres.conyuge }}</p>
-<p><strong>Número de hijos:</strong> {{ feligres.numero_hijos }}</p>
-<p><strong>Fecha de ingreso:</strong> {{ feligres.fecha_ingreso }}</p>
-<p><strong>Cargo:</strong> {{ feligres.cargo }}</p>
-<p><strong>Ministerio o grupo:</strong> {{ feligres.ministerio }}</p>
-<p><strong>Antecedentes:</strong> {{ feligres.antecedentes }}</p>
-<p><strong>Observaciones:</strong> {{ feligres.observaciones }}</p>
-
-{% if feligres.foto %}
-  <p><strong>Foto:</strong><br>
-    <img src="{{ feligres.foto.url }}" width="200" alt="Foto del feligrés">
-  </p>
-{% endif %}
+<table class="table">
+    <tr><th>Nombre</th><td>{{ feligres.nombre }}</td></tr>
+    <tr><th>Cédula</th><td>{{ feligres.cedula }}</td></tr>
+    <tr><th>Teléfono</th><td>{{ feligres.telefono }}</td></tr>
+    <tr><th>Dirección</th><td>{{ feligres.direccion }}</td></tr>
+    <tr><th>Ciudad</th><td>{{ feligres.ciudad }}</td></tr>
+    <tr><th>Correo</th><td>{{ feligres.correo }}</td></tr>
+    <tr><th>Estado Civil</th><td>{{ feligres.estado_civil }}</td></tr>
+    <tr><th>Cónyuge</th><td>{{ feligres.conyuge }}</td></tr>
+    <tr><th>Número de Hijos</th><td>{{ feligres.hijos }}</td></tr>
+    <tr><th>Ministerio</th><td>{{ feligres.ministerio }}</td></tr>
+    <tr><th>Fecha de Nacimiento</th><td>{{ feligres.fecha_nacimiento }}</td></tr>
+    <tr><th>Edad</th><td>{{ feligres.edad }}</td></tr>
+    <tr><th>Fecha de Ingreso</th><td>{{ feligres.fecha_ingreso }}</td></tr>
+    <tr><th>Cargo</th><td>{{ feligres.cargo }}</td></tr>
+    <tr><th>Antecedentes</th><td>{{ feligres.antecedentes }}</td></tr>
+    <tr><th>Observaciones</th><td>{{ feligres.observaciones }}</td></tr>
+    <tr>
+      <th>Foto</th>
+      <td>
+        {% if feligres.foto %}
+          <img src="{{ feligres.foto.url }}" class="img-thumbnail" width="150">
+        {% else %}
+          <span>No tiene foto</span>
+        {% endif %}
+      </td>
+    </tr>
+  </table>
+  
