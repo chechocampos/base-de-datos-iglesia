@@ -28,7 +28,7 @@ def agregar_feligres(request):
 def editar_feligres(request, feligres_id):
     feligres = get_object_or_404(Feligres, id=feligres_id)
     if request.method == "POST":
-        form = FeligresForm(request.POST, instance=feligres)
+        form = FeligresForm(request.POST, request.FILES, instance=feligres)
         if form.is_valid():
             form.save()
             return redirect('lista_feligreses')

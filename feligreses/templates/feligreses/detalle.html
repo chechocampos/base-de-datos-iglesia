@@ -15,11 +15,12 @@
     <tr><th>Cargo</th><td>{{ feligres.cargo }}</td></tr>
     <tr><th>Antecedentes</th><td>{{ feligres.antecedentes }}</td></tr>
     <tr><th>Observaciones</th><td>{{ feligres.observaciones }}</td></tr>
+    
     <tr>
       <th>Foto</th>
       <td>
         {% if feligres.foto %}
-          <img src="{{ feligres.foto.url }}" class="img-thumbnail" width="150">
+          <img src="{{ feligres.foto.url }}" alt="Foto del feligrés" class="img-thumbnail" width="150">
         {% else %}
           <span>No tiene foto</span>
         {% endif %}
