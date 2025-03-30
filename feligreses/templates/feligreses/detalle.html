@@ -1,41 +1,39 @@
-<div class="container mt-5">
-    <div class="card shadow-sm">
-      <div class="card-body">
-        <h4 class="card-title text-center mb-4">Hoja de Vida del Hermano</h4>
+<div class="container mt-5" style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
+    <div class="card shadow p-4">
+      <h3 class="text-center mb-4">Hoja de Vida del Hermano</h3>
   
-        <div class="row">
-          <!-- Info -->
-          <div class="col-md-8">
-            <table class="table table-striped">
-              <tbody>
-                <tr><th>Nombre</th><td>{{ feligres.nombre }}</td></tr>
-                <tr><th>Cédula</th><td>{{ feligres.cedula }}</td></tr>
-                <tr><th>Teléfono</th><td>{{ feligres.telefono }}</td></tr>
-                <tr><th>Dirección</th><td>{{ feligres.direccion }}</td></tr>
-                <tr><th>Ciudad</th><td>{{ feligres.ciudad }}</td></tr>
-                <tr><th>Correo</th><td>{{ feligres.correo }}</td></tr>
-                <tr><th>Estado Civil</th><td>{{ feligres.estado_civil }}</td></tr>
-                <tr><th>Cónyuge</th><td>{{ feligres.conyuge }}</td></tr>
-                <tr><th>Número de Hijos</th><td>{{ feligres.hijos }}</td></tr>
-                <tr><th>Ministerio</th><td>{{ feligres.ministerio }}</td></tr>
-                <tr><th>Fecha de Nacimiento</th><td>{{ feligres.fecha_nacimiento }}</td></tr>
-                <tr><th>Edad</th><td>{{ feligres.edad }}</td></tr>
-                <tr><th>Fecha de Ingreso</th><td>{{ feligres.fecha_ingreso }}</td></tr>
-                <tr><th>Cargo</th><td>{{ feligres.cargo }}</td></tr>
-                <tr><th>Antecedentes</th><td>{{ feligres.antecedentes }}</td></tr>
-                <tr><th>Observaciones</th><td>{{ feligres.observaciones }}</td></tr>
-              </tbody>
-            </table>
-          </div>
+      <div class="row">
+        <!-- Información -->
+        <div class="col-md-8">
+          <table class="table table-bordered">
+            <tbody>
+              <tr><th>Nombre</th><td>{{ feligres.nombre }}</td></tr>
+              <tr><th>Cédula</th><td>{{ feligres.cedula }}</td></tr>
+              <tr><th>Teléfono</th><td>{{ feligres.telefono }}</td></tr>
+              <tr><th>Dirección</th><td>{{ feligres.direccion }}</td></tr>
+              <tr><th>Ciudad</th><td>{{ feligres.ciudad }}</td></tr>
+              <tr><th>Correo</th><td>{{ feligres.correo }}</td></tr>
+              <tr><th>Estado Civil</th><td>{{ feligres.estado_civil }}</td></tr>
+              <tr><th>Cónyuge</th><td>{{ feligres.conyuge }}</td></tr>
+              <tr><th>Número de Hijos</th><td>{{ feligres.hijos }}</td></tr>
+              <tr><th>Ministerio</th><td>{{ feligres.ministerio }}</td></tr>
+              <tr><th>Fecha de Nacimiento</th><td>{{ feligres.fecha_nacimiento }}</td></tr>
+              <tr><th>Edad</th><td>{{ feligres.edad }}</td></tr>
+              <tr><th>Fecha de Ingreso</th><td>{{ feligres.fecha_ingreso }}</td></tr>
+              <tr><th>Cargo</th><td>{{ feligres.cargo }}</td></tr>
+              <tr><th>Antecedentes</th><td>{{ feligres.antecedentes }}</td></tr>
+              <tr><th>Observaciones</th><td>{{ feligres.observaciones }}</td></tr>
+            </tbody>
+          </table>
+        </div>
   
-          <!-- Foto -->
-          <div class="col-md-4 text-center">
-            {% if feligres.foto %}
-              <img src="{{ feligres.foto.url }}" class="img-thumbnail" style="max-width: 100%; height: auto;" alt="Foto">
-            {% else %}
-              <p class="text-muted">No tiene foto</p>
-            {% endif %}
-          </div>
+        <!-- Foto -->
+        <div class="col-md-4 text-center">
+          {% if feligres.foto %}
+            <img src="{{ feligres.foto.url }}" class="img-thumbnail mt-3" alt="Foto del hermano" style="max-width: 200px;">
+          {% else %}
+            <p class="text-muted mt-3">No tiene foto</p>
+          {% endif %}
         </div>
       </div>
     </div>
