@@ -1,31 +1,58 @@
 from django.db import models
-from datetime import date
 
 class Feligres(models.Model):
-    nombre = models.CharField(max_length=100)
-    cedula = models.CharField(max_length=20)
-    fecha_nacimiento = models.DateField(null=True, blank=True)
-    estado_civil = models.CharField(max_length=20, blank=True)
-    direccion = models.CharField(max_length=200, blank=True)
-    telefono = models.CharField(max_length=20, blank=True)
-    ciudad = models.CharField(max_length=100, blank=True)
-    correo = models.EmailField(blank=True)
-    conyuge = models.CharField(max_length=100, blank=True)
-    hijos = models.IntegerField(default=0)
-    fecha_ingreso = models.DateField(null=True, blank=True)
-    cargo = models.CharField(max_length=100, blank=True)
-    ministerio = models.CharField(max_length=100, blank=True)
-    antecedentes = models.TextField(blank=True)
-    observaciones = models.TextField(blank=True)
-    foto = models.ImageField(upload_to='fotos/', null=True, blank=True)
+    # Datos personales
+    nombres = models.CharField(max_length=100)
+    apellidos = models.CharField(max_length=100)
+    documento_identidad = models.CharField(max_length=50)
+    carnet = models.CharField(max_length=50, blank=True, null=True)
+    departamento_nacimiento = models.CharField(max_length=100)
+    fecha_nacimiento = models.DateField()
+    estado_civil = models.CharField(max_length=50)
+    tipo_sangre = models.CharField(max_length=5)  # RH
+    cargo_eclesiastico = models.CharField(max_length=100, blank=True, null=True)
 
-    def edad(self):
-        if self.fecha_nacimiento:
-            today = date.today()
-            return today.year - self.fecha_nacimiento.year - (
-                (today.month, today.day) < (self.fecha_nacimiento.month, self.fecha_nacimiento.day)
-            )
-        return None
+    # Información adicional
+    fecha_ingreso = models.DateField()
+    primaria = models.CharField(max_length=100, blank=True, null=True)
+    secundaria = models.CharField(max_length=100, blank=True, null=True)
+    universitaria = models.CharField(max_length=100, blank=True, null=True)
+    otros_titulos = models.TextField(blank=True, null=True)
+    ocupacion = models.CharField(max_length=100, blank=True, null=True)
+
+    # Contacto
+    domicilio = models.CharField(max_length=255)
+    celular = models.CharField(max_length=50)
+    correo = models.EmailField(blank=True, null=True)
+    nombre_familiar = models.CharField(max_length=100, blank=True, null=True)
+    celular_familiar = models.CharField(max_length=50, blank=True, null=True)
+
+    # Bautismo
+    bautismo_fecha = models.DateField(blank=True, null=True)
+    bautismo_lugar = models.CharField(max_length=100, blank=True, null=True)
+
+    # Matrimonio
+    matrimonio_civil_fecha = models.DateField(blank=True, null=True)
+    matrimonio_civil_lugar = models.CharField(max_length=100, blank=True, null=True)
+    matrimonio_civil_archivo = models.FileField(upload_to="matrimonio_civil/", blank=True, null=True)
+
+    matrimonio_eclesiastico_fecha = models.DateField(blank=True, null=True)
+    matrimonio_eclesiastico_lugar = models.CharField(max_length=100, blank=True, null=True)
+    matrimonio_eclesiastico_archivo = models.FileField(upload_to="matrimonio_eclesiastico/", blank=True, null=True)
+
+    # Conyugue
+    conyugue_nombre = models.CharField(max_length=100, blank=True, null=True)
+    conyugue_celular = models.CharField(max_length=50, blank=True, null=True)
+
+    # Hijos
+    hijos_menores = models.TextField(blank=True, null=True)
+
+    # Otros
+    observaciones = models.TextField(blank=True, null=True)
+    antecedentes = models.TextField(blank=True, null=True)
+    foto = models.ImageField(upload_to="fotos/", blank=True, null=True)
+    fotocopia_id = models.FileField(upload_to="documentos/id/", blank=True, null=True)
+    membresia = models.FileField(upload_to="documentos/membresia/", blank=True, null=True)
 
     def __str__(self):
-        return self.nombre
+        return self.nombres + " " + self.apellidos

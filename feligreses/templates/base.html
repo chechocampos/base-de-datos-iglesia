@@ -21,9 +21,10 @@
 
     <!-- Barra de navegación mejorada -->
     <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #f8f9fa;">
-        <div class="container">
-            <a class="navbar-brand" href="{% url 'lista_feligreses' %}">Base de Datos IDUNI</a>
-
+        <div class="d-flex align-items-center">
+            <img src="{% static 'img/tablas.png' %}" alt="Logo" style="height: 80px; width: auto; margin-right: 15px;">
+            <h4 class="mb-0"><strong>Base de Datos IDUNI</strong></h4>
+          </div>         
 
             <!-- Botón de menú para móviles -->
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
@@ -43,11 +44,9 @@
                             <form method="POST" action="{% url 'logout' %}" style="display: inline;">
                                 {% csrf_token %}
                                 <button type="submit" class="btn btn-danger">
-                                    <i class="fas fa-sign-out-alt"></i> Cerrar Sesión
+                                  <i class="fas fa-sign-out-alt"></i> Cerrar Sesión
                                 </button>
-                            </form>                   
-                      
-                     
+                              </form>                    
                            
                         </li>
                     </ul>

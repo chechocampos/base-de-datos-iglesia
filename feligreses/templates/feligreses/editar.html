@@ -1,21 +1,97 @@
-<form method="POST" enctype="multipart/form-data" class="p-4 border rounded bg-light shadow-sm">
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+  <h2 class="mt-4">✏️ Editar Hermano</h2>
+  <form method="post" enctype="multipart/form-data">
     {% csrf_token %}
-  
-    {% for field in form %}
-      <div class="mb-3">
-        <label for="{{ field.id_for_label }}" class="form-label">
-          {{ field.label }}
-        </label>
-        {{ field }}
-        {% if field.help_text %}
-          <small class="form-text text-muted">{{ field.help_text }}</small>
-        {% endif %}
-        {% for error in field.errors %}
-          <div class="text-danger small">{{ error }}</div>
+    {% if form.errors %}
+    <div class="alert alert-danger">
+      <ul>
+        {% for field in form %}
+          {% for error in field.errors %}
+            <li><strong>{{ field.label }}:</strong> {{ error }}</li>
+          {% endfor %}
         {% endfor %}
-      </div>
-    {% endfor %}
-  
-    <button type="submit" class="btn btn-primary">Actualizar</button>
+        {% for error in form.non_field_errors %}
+          <li>{{ error }}</li>
+        {% endfor %}
+      </ul>
+    </div>
+  {% endif %}
+
+    <!-- 📋 Datos Personales -->
+    <h4 class="mt-4">📋 Datos Personales</h4>
+    {{ form.nombres.label_tag }} {{ form.nombres }}<br>
+    {{ form.apellidos.label_tag }} {{ form.apellidos }}<br>
+    {{ form.documento_identidad.label_tag }} {{ form.documento_identidad }}<br>
+    {{ form.carnet.label_tag }} {{ form.carnet }}<br>
+    {{ form.lugar_nacimiento.label_tag }} {{ form.lugar_nacimiento }}<br>
+    <label for="id_departamento_nacimiento">Lugar de nacimiento:</label>
+    {{ form.departamento_nacimiento }}<br>
+    {{ form.fecha_nacimiento.label_tag }} {{ form.fecha_nacimiento }}<br>
+    {{ form.estado_civil.label_tag }} {{ form.estado_civil }}<br>
+    {{ form.tipo_sangre.label_tag }} {{ form.tipo_sangre }}<br>
+    {{ form.rh.label_tag }} {{ form.rh }}<br>
+    {{ form.fecha_ingreso.label_tag }} {{ form.fecha_ingreso }}<br>
+    {{ form.ciudad_nacimiento.label_tag }} {{ form.ciudad_nacimiento }}<br>
+    {{ form.cargo_eclesiastico.label_tag }} {{ form.cargo_eclesiastico }}<br>
+
+    <!-- 🎓 Formación -->
+    <h4 class="mt-4">🎓 Formación</h4>
+    {{ form.grado_instruccion.label_tag }} {{ form.grado_instruccion }}<br>
+    {{ form.otros_titulos.label_tag }} {{ form.otros_titulos }}<br>
+    {{ form.ocupacion.label_tag }} {{ form.ocupacion }}<br>
+
+    <!-- 📞 Contacto -->
+    <h4 class="mt-4">📞 Contacto</h4>
+    {{ form.domicilio.label_tag }} {{ form.domicilio }}<br>
+    {{ form.celular.label_tag }} {{ form.celular }}<br>
+    {{ form.correo.label_tag }} {{ form.correo }}<br>
+
+    <!-- 👨‍👩‍👦 Familiar -->
+    <h4 class="mt-4">👨‍👩‍👦 Familiar</h4>
+    {{ form.nombre_familiar.label_tag }} {{ form.nombre_familiar }}<br>
+    {{ form.celular_familiar.label_tag }} {{ form.celular_familiar }}<br>
+
+    <!-- 💧 Bautismo -->
+    <h4 class="mt-4">💧 Bautismo</h4>
+    {{ form.bautismo_fecha.label_tag }} {{ form.bautismo_fecha }}<br>
+    {{ form.bautismo_lugar.label_tag }} {{ form.bautismo_lugar }}<br>
+
+    <!-- 💍 Matrimonio Civil -->
+    <h4 class="mt-4">💍 Matrimonio Civil</h4>
+    {{ form.matrimonio_civil_fecha.label_tag }} {{ form.matrimonio_civil_fecha }}<br>
+    {{ form.matrimonio_civil_lugar.label_tag }} {{ form.matrimonio_civil_lugar }}<br>
+    {{ form.matrimonio_civil_archivo.label_tag }} {{ form.matrimonio_civil_archivo }}<br>
+
+    <!-- 🕊️ Matrimonio Eclesiástico -->
+    <h4 class="mt-4">🕊️ Matrimonio Eclesiástico</h4>
+    {{ form.matrimonio_eclesiastico_fecha.label_tag }} {{ form.matrimonio_eclesiastico_fecha }}<br>
+    {{ form.matrimonio_eclesiastico_lugar.label_tag }} {{ form.matrimonio_eclesiastico_lugar }}<br>
+    {{ form.matrimonio_eclesiastico_archivo.label_tag }} {{ form.matrimonio_eclesiastico_archivo }}<br>
+
+    <!-- 👥 Datos del Cónyuge -->
+    <h4 class="mt-4">👥 Datos del Cónyuge</h4>
+    {{ form.conyugue_nombre.label_tag }} {{ form.conyugue_nombre }}<br>
+    {{ form.conyugue_celular.label_tag }} {{ form.conyugue_celular }}<br>
+
+    <!-- 👶 Hijos -->
+    <h4 class="mt-4">👶 Hijos Menores de 18 Años</h4>
+    {{ form.hijos_menores.label_tag }} {{ form.hijos_menores }}
+
+    <!-- 📝 Información Adicional -->
+    <h4 class="mt-4">📝 Información Adicional</h4>
+    {{ form.observaciones.label_tag }} {{ form.observaciones }}<br>
+    {{ form.antecedentes.label_tag }} {{ form.antecedentes }}<br>
+
+    <!-- 📷 Archivos Adjuntos -->
+    <h4 class="mt-4">📷 Archivos Adjuntos</h4>
+    {{ form.foto.label_tag }} {{ form.foto }}<br>
+    {{ form.fotocopia_id.label_tag }} {{ form.fotocopia_id }}<br>
+    {{ form.membresia.label_tag }} {{ form.membresia }}<br>
+
+    <button type="submit" class="btn btn-success mt-3">Actualizar</button>
   </form>
-  
+</div>
+{% endblock %}

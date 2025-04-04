@@ -1,44 +1,104 @@
 {% extends 'base.html' %}
-{% load static %}
 
 {% block content %}
 <div class="container mt-4">
-    <h2 class="text-center mb-4">📝 Hoja de Vida del Hermano</h2>
+  <h2 class="text-center mb-4">
+    <i class="fas fa-file-alt text-danger"></i> Hoja de Vida del Hermano
+  </h2>
 
-    <div class="row">
-        <!-- Información del feligrés -->
-        <div class="col-md-7">
-            <table class="table table-striped table-bordered">
-                <tbody>
-                    <tr><th>Nombre</th><td>{{ feligres.nombre }}</td></tr>
-                    <tr><th>Cédula</th><td>{{ feligres.cedula }}</td></tr>
-                    <tr><th>Teléfono</th><td>{{ feligres.telefono }}</td></tr>
-                    <tr><th>Dirección</th><td>{{ feligres.direccion }}</td></tr>
-                    <tr><th>Ciudad</th><td>{{ feligres.ciudad }}</td></tr>
-                    <tr><th>Correo</th><td>{{ feligres.correo }}</td></tr>
-                    <tr><th>Estado Civil</th><td>{{ feligres.estado_civil }}</td></tr>
-                    <tr><th>Fecha de Nacimiento</th><td>{{ feligres.fecha_nacimiento|date:"j \\d\\e F \\d\\e Y" }}</td></tr>
-                    <tr><th>Edad</th><td>{{ feligres.edad }}</td></tr>
-                    <tr><th>Cónyuge</th><td>{{ feligres.conyuge }}</td></tr>
-                    <tr><th>Número de Hijos</th><td>{{ feligres.hijos }}</td></tr>
-                    <tr><th>Ministerio</th><td>{{ feligres.ministerio }}</td></tr>
-                    <tr><th>Fecha de Ingreso</th><td>{{ feligres.fecha_ingreso|date:"j \\d\\e F \\d\\e Y" }}</td></tr>
-                    <tr><th>Cargo</th><td>{{ feligres.cargo }}</td></tr>
-                    <tr><th>Antecedentes</th><td>{{ feligres.antecedentes }}</td></tr>
-                    <tr><th>Observaciones</th><td>{{ feligres.observaciones }}</td></tr>
-                </tbody>
-            </table>
-        </div>
-
-        <!-- Foto del feligrés -->
-        <div class="col-md-5 text-center">
-            <h5>📷 Foto</h5>
-            {% if feligres.foto %}
-            <img src="{{ feligrés.foto.url }}" alt="Foto del feligrés" style="max-width: 250px; height: auto; border-radius: 8px;">
-            {% else %}
-                <p>No tiene foto</p>
-            {% endif %}
-        </div>
+  <div class="row">
+    <!-- Información del hermano -->
+    <div class="col-md-8">
+      <table class="table table-bordered shadow-sm">
+        <tbody>
+          <tr><th>Nombre</th><td>{{ hermano.nombres }}</td></tr>
+          <tr><th>Apellidos</th><td>{{ hermano.apellidos }}</td></tr>
+          <tr><th>Cédula</th><td>{{ hermano.documento_identidad }}</td></tr>
+          <tr><th>Carnet</th><td>{{ hermano.carnet }}</td></tr>
+          <tr><th>Lugar de Nacimiento</th><td>{{ hermano.departamento_nacimiento }}</td></tr>
+          <tr><th>Fecha de Nacimiento</th><td>{{ hermano.fecha_nacimiento }}</td></tr>
+          <tr><th>Estado Civil</th><td>{{ hermano.estado_civil }}</td></tr>
+          <tr><th>RH</th><td>{{ hermano.rh }}</td></tr>
+          <tr>
+            <th>Cargo eclesiástico</th>
+            <td>{{ hermano.cargo_eclesiastico }}</td>
+          </tr>        
+          <tr><th>Fecha de Ingreso</th><td>{{ hermano.fecha_ingreso }}</td></tr>
+          <tr><th>Grado de Instrucción</th><td>{{ hermano.grado_instruccion }}</td></tr>
+          <tr><th>Otros Títulos</th><td>{{ hermano.otros_titulos }}</td></tr>
+          <tr><th>Ocupación</th><td>{{ hermano.ocupacion }}</td></tr>
+          <tr><th>Domicilio</th><td>{{ hermano.domicilio }}</td></tr>
+          <tr><th>Celular</th><td>{{ hermano.celular }}</td></tr>
+          <tr><th>Correo</th><td>{{ hermano.correo }}</td></tr>
+          <tr><th>Familiar de contacto</th><td>{{ hermano.nombre_familiar }}</td></tr>
+          <tr>
+            <th>Celular del familiar</th>
+            <td>{{ hermano.celular_familiar }}</td>
+          </tr>      
+          <tr><th>Bautismo</th><td>{{ hermano.bautismo_fecha }} - {{ hermano.bautismo_lugar }}</td></tr>
+          <tr><th>Matrimonio Civil</th><td>{{ hermano.matrimonio_civil_fecha }} - {{ hermano.matrimonio_civil_lugar }}</td></tr>
+          <tr><th>Matrimonio Eclesiástico</th><td>{{ hermano.matrimonio_ecclesiastico_fecha }} - {{ hermano.matrimonio_ecclesiastico_lugar }}</td></tr>
+          <tr><th>Nombre del Cónyuge</th><td>{{ hermano.conyugue_nombre }}</td></tr>
+          <tr><th>Celular del Cónyuge</th><td>{{ hermano.conyugue_celular }}</td></tr>
+          <tr>
+            <th>Hijos menores</th>
+            <td>
+              {% for hijo in hermano.hijos_menores.splitlines %}
+                - {{ hijo }}<br>
+              {% endfor %}
+            </td>
+          </tr>
+          <tr><th>Observaciones</th><td>{{ hermano.observaciones }}</td></tr>
+          <tr><th>Antecedentes</th><td>{{ hermano.antecedentes }}</td></tr>
+        </tbody>
+      </table>
     </div>
+
+    <!-- Foto y archivos -->
+    <div class="col-md-4 text-center">
+      <h5 class="mb-3"><i class="fas fa-camera text-secondary"></i> Foto</h5>
+      {% if hermano.foto %}
+        <img src="{{ hermano.foto.url }}" class="img-thumbnail mb-3" width="180">
+      {% else %}
+        <p class="text-muted">No tiene foto</p>
+      {% endif %}
+
+      <h5><i class="fas fa-file-alt text-secondary"></i> Documentos</h5>
+      <ul class="list-unstyled">
+        <li>
+          <strong>Fotocopia ID:</strong>
+          {% if hermano.fotocopia_id %}
+            <a href="{{ hermano.fotocopia_id.url }}" target="_blank">Ver archivo</a>
+          {% else %}
+            <span class="text-muted">No</span>
+          {% endif %}
+        </li>
+        <li>
+          <strong>Archivo Matrimonio Civil:</strong>
+          {% if hermano.matrimonio_civil_archivo %}
+            <a href="{{ hermano.matrimonio_civil_archivo.url }}" target="_blank">Ver archivo</a>
+          {% else %}
+            <span class="text-muted">No</span>
+          {% endif %}
+        </li>
+        <li>
+          <strong>Archivo Matrimonio Eclesiástico:</strong>
+          {% if hermano.matrimonio_ecclesiastico_archivo %}
+            <a href="{{ hermano.matrimonio_ecclesiastico_archivo.url }}" target="_blank">Ver archivo</a>
+          {% else %}
+            <span class="text-muted">No</span>
+          {% endif %}
+        </li>
+        <li>
+          <strong>Membrecía:</strong>
+          {% if hermano.membresia %}
+            <a href="{{ hermano.membresia.url }}" target="_blank">Ver archivo</a>
+          {% else %}
+            <span class="text-muted">No</span>
+          {% endif %}
+        </li>
+      </ul>
+    </div>
+  </div>
 </div>
 {% endblock %}

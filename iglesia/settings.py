@@ -38,7 +38,7 @@ ROOT_URLCONF = 'iglesia.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'feligreses/templates'],  # Ruta donde están tus HTML
+        'DIRS': [],  # <-- Esto debe estar vacío
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -50,6 +50,7 @@ TEMPLATES = [
         },
     },
 ]
+
 
 # Base de datos
 DATABASES = {
@@ -87,8 +88,8 @@ STATICFILES_DIRS = [BASE_DIR / 'feligreses/static']
 
 # Configuración de autenticación y redirección de login/logout
 LOGIN_URL = '/accounts/login/'  # Página de inicio de sesión
-LOGIN_REDIRECT_URL = '/feligreses/'  # Redirige después de iniciar sesión
 LOGOUT_REDIRECT_URL = '/accounts/login/'  # Redirige después de cerrar sesión
+LOGIN_REDIRECT_URL = '/hermanos/'
 
 # Configuración por defecto de claves primarias
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
@@ -97,5 +98,7 @@ import os
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+
 
 

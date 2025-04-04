@@ -1,6 +1,96 @@
-<form method="POST" enctype="multipart/form-data">
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+  <h2 class="mt-4">👤 Nuevo Hermano</h2>
+  <form method="post" enctype="multipart/form-data">
     {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit" class="btn btn-primary">Guardar</button>
+    {% if form.errors %}
+    <div class="alert alert-danger">
+      <ul>
+        {% for field in form %}
+          {% for error in field.errors %}
+            <li><strong>{{ field.label }}:</strong> {{ error }}</li>
+          {% endfor %}
+        {% endfor %}
+        {% for error in form.non_field_errors %}
+          <li>{{ error }}</li>
+        {% endfor %}
+      </ul>
+    </div>
+    {% endif %}
+
+    <!-- 🧾 DATOS PERSONALES -->
+    <h4 class="mt-4">🧾 Datos Personales</h4>
+    {{ form.nombres.label_tag }} {{ form.nombres }}<br>
+    {{ form.apellidos.label_tag }} {{ form.apellidos }}<br>
+    {{ form.documento_identidad.label_tag }} {{ form.documento_identidad }}<br>
+    {{ form.carnet.label_tag }} {{ form.carnet }}<br>
+    {{ form.departamento_nacimiento.label_tag }} {{ form.departamento_nacimiento }}<br>
+    {{ form.lugar_nacimiento.label_tag }} {{ form.lugar_nacimiento }}<br>
+    {{ form.fecha_nacimiento.label_tag }} {{ form.fecha_nacimiento }}<br>
+    {{ form.estado_civil.label_tag }} {{ form.estado_civil }}<br>
+    {{ form.tipo_sangre.label_tag }} {{ form.tipo_sangre }}<br>
+    {{ form.fecha_ingreso.label_tag }} {{ form.fecha_ingreso }}<br>
+    {{ form.cargo_eclesiastico.label_tag }} {{ form.cargo_eclesiastico }}<br>
+
+
+    <!-- 🎓 FORMACIÓN -->
+    <h4 class="mt-4">🎓 Formación</h4>
+    {{ form.grado_instruccion.label_tag }} {{ form.grado_instruccion }}<br>
+    {{ form.otros_titulos.label_tag }} {{ form.otros_titulos }}<br>
+    {{ form.ocupacion.label_tag }} {{ form.ocupacion }}<br>
+
+    <!-- 📞 CONTACTO -->
+    <h4 class="mt-4">📞 Contacto</h4>
+    {{ form.domicilio.label_tag }} {{ form.domicilio }}<br>
+    {{ form.celular.label_tag }} {{ form.celular }}<br>
+    {{ form.correo.label_tag }} {{ form.correo }}<br>
+
+    <!-- 🧑‍🤝‍🧑 FAMILIAR -->
+    <h4 class="mt-4">👨‍👩‍👦 Familiar</h4>
+    {{ form.nombre_familiar.label_tag }} {{ form.nombre_familiar }}<br>
+    {{ form.celular_familiar.label_tag }} {{ form.celular_familiar }}<br>
+
+    <!-- 💧 BAUTISMO -->
+    <h4 class="mt-4">💧 Bautismo</h4>
+    {{ form.bautismo_fecha.label_tag }} {{ form.bautismo_fecha }}<br>
+    {{ form.bautismo_lugar.label_tag }} {{ form.bautismo_lugar }}<br>
+
+    <!-- 💍 MATRIMONIO CIVIL -->
+    <h4 class="mt-4">💍 Matrimonio Civil</h4>
+    {{ form.matrimonio_civil_fecha.label_tag }} {{ form.matrimonio_civil_fecha }}<br>
+    {{ form.matrimonio_civil_lugar.label_tag }} {{ form.matrimonio_civil_lugar }}<br>
+    {{ form.matrimonio_civil_archivo.label_tag }} {{ form.matrimonio_civil_archivo }}<br>
+
+    <!-- ⛪ MATRIMONIO ECLESIÁSTICO -->
+    <h4 class="mt-4">⛪ Matrimonio Eclesiástico</h4>
+    {{ form.matrimonio_eclesiastico_fecha.label_tag }} {{ form.matrimonio_eclesiastico_fecha }}<br>
+    {{ form.matrimonio_eclesiastico_lugar.label_tag }} {{ form.matrimonio_eclesiastico_lugar }}<br>
+    {{ form.matrimonio_eclesiastico_archivo.label_tag }} {{ form.matrimonio_eclesiastico_archivo }}<br>
+
+    <!-- 👩‍❤️‍👨 CÓNYUGE -->
+    <h4 class="mt-4">👩‍❤️‍👨 Datos del Cónyuge</h4>
+    {{ form.conyugue_nombre.label_tag }} {{ form.conyugue_nombre }}<br>
+    {{ form.conyugue_celular.label_tag }} {{ form.conyugue_celular }}<br>
+
+    <!-- 👶 HIJOS -->
+    <h4 class="mt-4">👶 Hijos Menores de 18 Años</h4>
+    {{ form.hijos_menores.label_tag }} {{ form.hijos_menores }}
+
+    <!-- 🗒️ INFORMACIÓN ADICIONAL -->
+    <h4 class="mt-4">🗒️ Información Adicional</h4>
+    {{ form.observaciones.label_tag }} {{ form.observaciones }}<br>
+    {{ form.antecedentes.label_tag }} {{ form.antecedentes }}<br>
+
+    <!-- 📁 ARCHIVOS -->
+    <h4 class="mt-4">📁 Archivos Adjuntos</h4>
+    {{ form.foto.label_tag }} {{ form.foto }}<br>
+    {{ form.fotocopia_id.label_tag }} {{ form.fotocopia_id }}<br>
+    {{ form.membresia.label_tag }} {{ form.membresia }}<br>
+
+    <a href="{% url 'lista_hermanos' %}" class="btn btn-secondary mt-3">Cancelar</a>
+    <button type="submit" class="btn btn-primary mt-3">Guardar</button>
   </form>
-  
+</div>
+{% endblock %}
