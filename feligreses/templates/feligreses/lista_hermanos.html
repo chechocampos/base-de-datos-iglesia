@@ -3,6 +3,11 @@
 {% block content %}
 <div class="container mt-4">
     <h2 class="mb-4 text-center">Lista de Hermanos</h2>
+    <div class="text-center mt-4">
+        <a href="{% url 'agregar_hermano' %}" class="btn btn-success">
+            <i class="fas fa-plus"></i> Agregar nuevo hermano
+        </a>
+    </div>
     <form method="get" class="mb-4 d-flex justify-content-center" role="search">
         <input type="text" name="q" class="form-control w-50 me-2" placeholder="Buscar por nombre, apellido o documento" value="{{ request.GET.q }}">
         <button type="submit" class="btn btn-outline-primary">Buscar</button>
@@ -45,10 +50,6 @@
     <p class="text-center">No hay hermanos registrados.</p>
     {% endif %}
 
-    <div class="text-center mt-4">
-        <a href="{% url 'agregar_hermano' %}" class="btn btn-success">
-            <i class="fas fa-plus"></i> Agregar nuevo hermano
-        </a>
-    </div>
+ 
 </div>
 {% endblock %}
