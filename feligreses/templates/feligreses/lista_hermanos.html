@@ -29,8 +29,8 @@
                     <td>{{ hermano.apellidos|default:"Sin registro" }}</td>
                     <td>{{ hermano.documento_identidad }}</td>
                     <td>{{ hermano.carnet|default:"-" }}</td>
-                    <td>{{ hermano.celular|default:"Sin domicilio" }}</td>
-                    <td>{{ hermano.rh }}</td>
+                    <td>{{ hermano.tipo_sangre }}</td> <!-- Este es RH -->
+                    <td>{{ hermano.celular }}</td>       <!-- Este es Celular -->
                     <td>
                         <a href="{% url 'detalle_hermano' hermano.id %}" class="btn btn-info btn-sm">Ver</a>
                         <a href="{% url 'editar_hermano' hermano.id %}" class="btn btn-warning btn-sm">Editar</a>
